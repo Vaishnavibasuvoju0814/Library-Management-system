@@ -141,17 +141,3 @@ system at all.
 0  -> Exit            -> auto-saves before quitting
 ```
 
-## Design Notes / Talking Points for Interviews
-
-- **Why a generic `Repository<T, ID>`?** It avoids writing near-identical
-  `Map<String, Book>` and `Map<String, Member>` boilerplate twice, and is a
-  realistic, simplified stand-in for what a Spring Data `JpaRepository<T, ID>`
-  gives you for free.
-- **Why checked exceptions for "not found" errors?** They force the caller
-  (the console menu) to explicitly handle the failure path instead of the
-  program crashing with a stack trace — appropriate for expected,
-  recoverable conditions a user can just try again.
-- **Why single-copy books?** Keeps the issue/return/fine logic easy to
-  follow and test, while still leaving room to discuss how you'd extend it
-  (e.g. `totalCopies`/`availableCopies`, or a dedicated `IssueRecord`
-  history class) if asked "how would you scale this?"
